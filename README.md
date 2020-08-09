@@ -16,4 +16,4 @@ The API is based on HTTPS requests and JSON responses. The stable HTTPS endpoint
 | /lottery/[:id] | Get    |
 
 Credit 
- - Api ( https://github.com/rayriffy/thai-lotto-api )# Thai-Lottery-
+ - Api ( https://github.com/rayriffy/thai-lotto-api )
