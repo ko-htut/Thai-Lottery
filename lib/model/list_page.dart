@@ -15,11 +15,11 @@ class LotteryList {
     });
 
     String status;
-    List<Response> response;
+    List<Responset> response;
 
     factory LotteryList.fromJson(Map<String, dynamic> json) => LotteryList(
         status: json["status"],
-        response: List<Response>.from(json["response"].map((x) => Response.fromJson(x))),
+        response: List<Responset>.from(json["response"].map((x) => Responset.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -28,8 +28,8 @@ class LotteryList {
     };
 }
 
-class Response {
-    Response({
+class Responset {
+    Responset({
         this.id,
         this.url,
         this.date,
@@ -39,7 +39,7 @@ class Response {
     String url;
     String date;
 
-    factory Response.fromJson(Map<String, dynamic> json) => Response(
+    factory Responset.fromJson(Map<String, dynamic> json) => Responset(
         id: json["id"],
         url: json["url"],
         date: json["date"],

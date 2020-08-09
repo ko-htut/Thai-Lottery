@@ -16,7 +16,7 @@ class LotteryListPage extends StatefulWidget {
 }
 
 class _LotteryListPageState extends State<LotteryListPage> {
-  List<list.Response> _slotteryData = [];
+  List<list.Responset> _slotteryData = [];
   int page = 1;
   int _currentpage = 1;
   int _lastpage = 1;
@@ -60,7 +60,7 @@ class _LotteryListPageState extends State<LotteryListPage> {
   }
 
   Widget _buildlottolist() {
-    return _buildLoadMoreWidget<list.Response>(_slotteryData, (slottery) {
+    return _buildLoadMoreWidget<list.Responset>(_slotteryData, (slottery) {
       final monthreg = RegExp(r'([\u0E00-\u0E7F]+)');
       String month = monthreg.firstMatch(slottery.date).group(0);
       return ListTile(

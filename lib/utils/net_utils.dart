@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:thai_lotoo/model/latest_page.dart' as last;
-import 'package:thai_lotoo/model/list_page.dart' as list;
+import 'package:thai_lotoo/model/latest_page.dart';
+import 'package:thai_lotoo/model/list_page.dart';
 import 'package:thai_lotoo/utils/configs.dart';
 import 'package:thai_lotoo/widget/loading.dart';
 
@@ -37,17 +37,17 @@ class NetUtils {
     }
   }
 
-  static Future<list.LotteryList> getlotterylist(BuildContext context,
+  static Future<LotteryList> getlotterylist(BuildContext context,
       {@required String page}) async {
     var response =
         await _get(context, '/list/$page', isShowLoading: false);
-    return list.LotteryList.fromJson(response.data);
+    return LotteryList.fromJson(response.data);
   }
 
-   static Future<last.LotteryLatest> getlottery(BuildContext context,
-      {@required Map<String, dynamic> params}) async {
-    var response =
-        await _get(context, '/latest', params: params, isShowLoading: false);
-    return last.LotteryLatest.fromJson(response.data);
+   static Future<LotteryLatest> getlottery(BuildContext context,
+      ) async {
+    var responsed =
+        await _get(context, '/latest', isShowLoading: false);
+    return LotteryLatest.fromJson(responsed.data);
   }
 }

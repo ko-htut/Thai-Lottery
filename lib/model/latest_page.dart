@@ -2,11 +2,11 @@
 //
 //     final lotteryLatest = lotteryLatestFromJson(jsonString);
 
-import 'dart:convert';
+// import 'dart:convert';
 
-LotteryLatest lotteryLatestFromJson(String str) => LotteryLatest.fromJson(json.decode(str));
+// LotteryLatest lotteryLatestFromJson(String str) => LotteryLatest.fromJson(json.decode(str));
 
-String lotteryLatestToJson(LotteryLatest data) => json.encode(data.toJson());
+// String lotteryLatestToJson(LotteryLatest data) => json.encode(data.toJson());
 
 class LotteryLatest {
     LotteryLatest({
@@ -15,11 +15,11 @@ class LotteryLatest {
     });
 
     String status;
-    Response response;
+    Responset response;
 
     factory LotteryLatest.fromJson(Map<String, dynamic> json) => LotteryLatest(
         status: json["status"],
-        response: Response.fromJson(json["response"]),
+        response: Responset.fromJson(json["response"]),
     );
 
     Map<String, dynamic> toJson() => {
@@ -28,8 +28,8 @@ class LotteryLatest {
     };
 }
 
-class Response {
-    Response({
+class Responset {
+    Responset({
         this.date,
         this.endpoint,
         this.prizes,
@@ -41,7 +41,7 @@ class Response {
     List<Prize> prizes;
     List<Prize> runningNumbers;
 
-    factory Response.fromJson(Map<String, dynamic> json) => Response(
+    factory Responset.fromJson(Map<String, dynamic> json) => Responset(
         date: json["date"],
         endpoint: json["endpoint"],
         prizes: List<Prize>.from(json["prizes"].map((x) => Prize.fromJson(x))),
