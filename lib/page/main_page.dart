@@ -1,8 +1,11 @@
 import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thai_lotoo/page/Latest/latest_page.dart';
 import 'package:thai_lotoo/page/List/list_page.dart';
 import 'package:thai_lotoo/utils/configs.dart';
+
+import '../application.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -37,7 +40,12 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
       LotteryLastPage(),
       LotteryListPage(),
     ];
-
+    ScreenUtil.init(context, width: 750, height: 1334);
+    final size = MediaQuery.of(context).size;
+    Application.screenWidth = size.width;
+    Application.screenHeight = size.height;
+    Application.statusBarHeight = MediaQuery.of(context).padding.top;
+    Application.bottomBarHeight = MediaQuery.of(context).padding.bottom;
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,

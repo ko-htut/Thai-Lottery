@@ -38,9 +38,9 @@ class NetUtils {
   }
 
   static Future<list.LotteryList> getlotterylist(BuildContext context,
-      {@required Map<String, dynamic> params}) async {
+      {@required String page}) async {
     var response =
-        await _get(context, '/list/1', params: params, isShowLoading: false);
+        await _get(context, '/list/$page', isShowLoading: false);
     return list.LotteryList.fromJson(response.data);
   }
 
