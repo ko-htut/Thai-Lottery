@@ -3,6 +3,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:thai_lotoo/model/list_page.dart' as list;
 import 'package:thai_lotoo/utils/net_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:thai_lotoo/utils/utils.dart';
 import 'package:thai_lotoo/widget/loading.dart';
 import 'package:thai_lotoo/widget/widget_load_footer.dart';
 
@@ -22,20 +23,20 @@ class _LotteryListPageState extends State<LotteryListPage> {
   int _lastpage = 1;
   int _count = -1;
   EasyRefreshController _controller;
-  var _engmonthlsit = {
-    "มกราคม": "January",
-    "กุมภาพันธ์": "February",
-    "มีนาคม": "March",
-    "เมษายน": "April",
-    "พฤษภาคม": "May",
-    "มิถุนายน": "June",
-    "กรกฎาคม": "July",
-    "สิงหาคม": "August",
-    "กันยายน": "September",
-    "ตุลาคม": "October",
-    "พฤศจิกายน": "November",
-    "ธันวาคม": "December",
-  };
+  // var _engmonthlsit = {
+  //   "มกราคม": "January",
+  //   "กุมภาพันธ์": "February",
+  //   "มีนาคม": "March",
+  //   "เมษายน": "April",
+  //   "พฤษภาคม": "May",
+  //   "มิถุนายน": "June",
+  //   "กรกฎาคม": "July",
+  //   "สิงหาคม": "August",
+  //   "กันยายน": "September",
+  //   "ตุลาคม": "October",
+  //   "พฤศจิกายน": "November",
+  //   "ธันวาคม": "December",
+  // };
   @override
   void initState() {
     super.initState();
@@ -64,7 +65,7 @@ class _LotteryListPageState extends State<LotteryListPage> {
       final monthreg = RegExp(r'([\u0E00-\u0E7F]+)');
       String month = monthreg.firstMatch(slottery.date).group(0);
       return ListTile(
-        title: Text("Month : ${_engmonthlsit[month]}"),
+        title: Text("Month : ${Utils.engmonthlsit[month]}"),
         subtitle: Text("Rd : ${slottery.date}"),
       );
     });
