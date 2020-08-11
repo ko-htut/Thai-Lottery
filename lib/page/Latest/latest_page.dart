@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thai_lotoo/model/latest_page.dart';
 import 'package:thai_lotoo/utils/net_utils.dart';
+import 'package:thai_lotoo/widget/common_text_style.dart';
 import 'package:thai_lotoo/widget/h_empty_view.dart';
 import 'package:thai_lotoo/widget/widget_future_builder.dart';
 
@@ -18,19 +19,84 @@ class _LotteryLastPageState extends State<LotteryLastPage> {
       futureFunc: NetUtils.getlottery,
       builder: (context, snapshot) {
         var data = snapshot.response;
-        return ListView.separated(
-          separatorBuilder: (context, index) {
-            return HEmptyView(ScreenUtil().setWidth(30));
-          },
-          padding:
-              EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(15)),
-          itemBuilder: (context, index) {
-            var prizes = snapshot.response.prizes[index];
-            return Text("${prizes.name} :${prizes.reward} ");
-          },
-          shrinkWrap: true,
-          scrollDirection: Axis.vertical,
-          itemCount: data.prizes.length,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              color: Colors.blue[100],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(snapshot.response.date),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: data.prizes
+                    .map((e) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text("${e.name} :${e.reward} "),
+                            Container(
+                              margin: const EdgeInsets.all(5.0),
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                spacing: ScreenUtil().setWidth(3),
+                                children: e.number
+                                    .map((v) => GestureDetector(
+                                          onTap: () {},
+                                          child: Chip(
+                                            label: Text(
+                                              v,
+                                              style: common14TextStyle,
+                                            ),
+                                          ),
+                                        ))
+                                    .toList(),
+                              ),
+                            ),
+                          ],
+                        ))
+                    .toList(),
+              ),
+            ),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: data.runningNumbers
+                      .map((e) => Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text("${e.name} :${e.reward} "),
+                              Container(
+                                margin: const EdgeInsets.all(8.0),
+                                child: Wrap(
+                                  alignment: WrapAlignment.center,
+                                  spacing: ScreenUtil().setWidth(10),
+                                  children: e.number
+                                      .map((v) => GestureDetector(
+                                            onTap: () {},
+                                            child: Chip(
+                                              label: Text(
+                                                v,
+                                                style: common14TextStyle,
+                                              ),
+                                            ),
+                                          ))
+                                      .toList(),
+                                ),
+                              ),
+                            ],
+                          ))
+                      .toList(),
+                ),
+              ),
+            )
+          ],
         );
       },
     );
@@ -39,13 +105,7 @@ class _LotteryLastPageState extends State<LotteryLastPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildRecommendPlayList(),
-          ],
-        ),
-      ),
+      body: SingleChildScrollView(child: _buildRecommendPlayList()),
     );
   }
 }
