@@ -13,11 +13,18 @@ class _ErrorPageState extends State<ErrorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Icon(AntIcons.frown_outline),
-          Text(Configs.wrong)
-        ],
+      appBar: AppBar(elevation: 0,),
+      body: Container(
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(AntIcons.frown_outline),
+              Text(Configs.wrong)
+            ],
+          ),
+        ),
       ),
     );
   }

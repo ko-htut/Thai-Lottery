@@ -1,22 +1,24 @@
 import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:thai_lotoo/model/latest_page.dart';
 import 'package:thai_lotoo/utils/net_utils.dart';
 import 'package:thai_lotoo/utils/utils.dart';
 import 'package:thai_lotoo/widget/common_text_style.dart';
 import 'package:thai_lotoo/widget/widget_future_builder.dart';
 
-class LotteryLastPage extends StatefulWidget {
-  LotteryLastPage({Key key}) : super(key: key);
+class LotteryDetailPage extends StatefulWidget {
+  final String url;
+  LotteryDetailPage({Key key, this.url}) : super(key: key);
 
   @override
-  _LotteryLastPageState createState() => _LotteryLastPageState();
+  _LotteryDetailPageState createState() => _LotteryDetailPageState();
 }
 
-class _LotteryLastPageState extends State<LotteryLastPage> {
+class _LotteryDetailPageState extends State<LotteryDetailPage> {
   Widget _buildRecommendPlayList() {
     return CustomFutureBuilder<LotteryLatest>(
+      plsurl: widget.url ?? "/latest",
       futureFunc: NetUtils.getlottery,
       builder: (context, snapshot) {
         var data = snapshot.response;
@@ -26,18 +28,20 @@ class _LotteryLastPageState extends State<LotteryLastPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.blue[100],
-                borderRadius: BorderRadius.circular(5),
-              ),
-              margin: EdgeInsets.all(5.0),
-              child: ListTile(
-                title: Text(Utils.engmonthlsit[month]),
-                subtitle: Text(snapshot.response.date),
-                trailing: Icon(AntIcons.scan),
-              ),
-            ),
+            (widget.url == null)
+                ? Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue[100],
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    margin: EdgeInsets.all(5.0),
+                    child: ListTile(
+                      title: Text(Utils.engmonthlsit[month]),
+                      subtitle: Text(snapshot.response.date),
+                      trailing: Icon(AntIcons.scan),
+                    ),
+                  )
+                : Container(),
             // Container(
             //   width: double.infinity,
             //   color: Colors.blue[100],
@@ -55,8 +59,7 @@ class _LotteryLastPageState extends State<LotteryLastPage> {
                     .map((e) => Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                                "${Utils.engprize[e.id]} :${e.reward} "),
+                            Text("${Utils.engprize[e.id]} :${e.reward} "),
                             Container(
                               margin: const EdgeInsets.all(5.0),
                               child: Wrap(
@@ -88,8 +91,7 @@ class _LotteryLastPageState extends State<LotteryLastPage> {
                       .map((e) => Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
-                                  "${Utils.engprize[e.id]} :${e.reward} "),
+                              Text("${Utils.engprize[e.id]} :${e.reward} "),
                               Container(
                                 margin: const EdgeInsets.all(8.0),
                                 child: Wrap(
@@ -122,8 +124,13 @@ class _LotteryLastPageState extends State<LotteryLastPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(child: _buildRecommendPlayList()),
-    );
+    return (widget.url == null)
+        ? Scaffold(
+            body: SingleChildScrollView(child: _buildRecommendPlayList()),
+          )
+        : Scaffold(
+            appBar: AppBar(elevation: 0,),
+            body: SingleChildScrollView(child: _buildRecommendPlayList()),
+          );
   }
 }

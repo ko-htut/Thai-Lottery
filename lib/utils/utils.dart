@@ -37,7 +37,7 @@ class Utils {
     "prizeFirst": "First Prize",
     "prizeFirstNear": "First Near Prize",
     "prizeSecond": "Second Prize",
-    "prizeThrid": "Thrid Prize",
+    "prizeThird": "Thrid Prize",
     "prizeForth": "Forth Prize",
     "prizeFifth": "Fifth Prize",
     "runningNumberFrontThree": "Prize for 3 page numbers",

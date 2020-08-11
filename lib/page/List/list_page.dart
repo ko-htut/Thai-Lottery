@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:thai_lotoo/model/list_page.dart' as list;
+import 'package:thai_lotoo/utils/navigator_util.dart';
 import 'package:thai_lotoo/utils/net_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:thai_lotoo/utils/utils.dart';
@@ -64,9 +65,17 @@ class _LotteryListPageState extends State<LotteryListPage> {
     return _buildLoadMoreWidget<list.Responset>(_slotteryData, (slottery) {
       final monthreg = RegExp(r'([\u0E00-\u0E7F]+)');
       String month = monthreg.firstMatch(slottery.date).group(0);
-      return ListTile(
-        title: Text("Month : ${Utils.engmonthlsit[month]}"),
-        subtitle: Text("Rd : ${slottery.date}"),
+      return Card(
+        elevation: 0,
+        child: InkWell(
+          onTap: (){
+            NavigatorUtil.golotterydetails(context, url: slottery.url);
+          },
+          child: ListTile(
+            title: Text("Month : ${Utils.engmonthlsit[month]}"),
+            subtitle: Text("Rd : ${slottery.date}"),
+          ),
+        ),
       );
     });
   }

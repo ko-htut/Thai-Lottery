@@ -1,6 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:thai_lotoo/page/Result/result_page.dart';
+import 'package:thai_lotoo/page/lottery_detail_page.dart';
 import 'package:thai_lotoo/page/main_page.dart';
 
 var mainHandler = new Handler(
@@ -9,7 +9,9 @@ var mainHandler = new Handler(
 });
 
 // Result
-var resultHandler = new Handler(
+var lotterydetailHandler = new Handler(
     handlerFunc: (BuildContext context, Map<String, List<Object>> params) {
-  return LotteryResultPage();
+  String url = params['url'].first.toString();
+  print("data: $url");
+  return LotteryDetailPage(url: url,);
 });

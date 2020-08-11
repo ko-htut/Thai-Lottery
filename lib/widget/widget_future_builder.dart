@@ -12,13 +12,13 @@ typedef ValueWidgetBuilder<T> = Widget Function(
 class CustomFutureBuilder<T> extends StatefulWidget {
   final ValueWidgetBuilder<T> builder;
   final Function futureFunc;
-  final Map<String, dynamic> params;
+  final String plsurl;
   final Widget loadingWidget;
 
   CustomFutureBuilder({
     @required this.futureFunc,
     @required this.builder,
-    this.params,
+    this.plsurl,
     Widget loadingWidget,
   }) : loadingWidget = loadingWidget ??
             Container(
@@ -45,11 +45,11 @@ class _CustomFutureBuilderState<T> extends State<CustomFutureBuilder<T>> {
 
   void _request() {
     setState(() {
-      if (widget.params == null)
+      if (widget.plsurl == null)
         _future = widget.futureFunc(context);
       else {
-        _future = widget.futureFunc(context, params: widget.params);
-        oldParams = widget.params.values.join();
+        _future = widget.futureFunc(context, plsurl: widget.plsurl);
+        oldParams = widget.plsurl;
       }
     });
   }
@@ -63,11 +63,11 @@ class _CustomFutureBuilderState<T> extends State<CustomFutureBuilder<T>> {
       });
     }
     if ((oldWidget.futureFunc == widget.futureFunc) &&
-        oldWidget.params != null &&
-        widget.params != null) {
-      if (oldParams != widget.params.values.join()) {
+        oldWidget.plsurl != null &&
+        widget.plsurl != null) {
+      if (oldParams != widget.plsurl) {
         print('params not');
-        oldParams = widget.params.values.join();
+        oldParams = widget.plsurl;
         WidgetsBinding.instance.addPostFrameCallback((call) {
           _request();
         });

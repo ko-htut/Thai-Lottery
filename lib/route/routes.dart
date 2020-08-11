@@ -16,6 +16,6 @@ class Routes {
       return ErrorPage();
     });
     router.define(root, handler: mainHandler);
-    router.define(result, handler: resultHandler);
+    router.define(result, handler: lotterydetailHandler);
   }
 }

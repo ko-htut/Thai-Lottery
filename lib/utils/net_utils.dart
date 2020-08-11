@@ -39,15 +39,14 @@ class NetUtils {
 
   static Future<LotteryList> getlotterylist(BuildContext context,
       {@required String page}) async {
-    var response =
-        await _get(context, '/list/$page', isShowLoading: false);
+    var response = await _get(context, '/list/$page', isShowLoading: false);
     return LotteryList.fromJson(response.data);
   }
 
-   static Future<LotteryLatest> getlottery(BuildContext context,
-      ) async {
-    var responsed =
-        await _get(context, '/latest', isShowLoading: false);
+  static Future<LotteryLatest> getlottery(BuildContext context,
+      {String plsurl}) async {
+    print(plsurl);
+    var responsed = await _get(context, '$plsurl', isShowLoading: false);
     return LotteryLatest.fromJson(responsed.data);
   }
 }

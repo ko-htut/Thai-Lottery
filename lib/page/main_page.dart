@@ -1,8 +1,8 @@
 import 'package:ant_icons/ant_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:thai_lotoo/page/Latest/latest_page.dart';
 import 'package:thai_lotoo/page/List/list_page.dart';
+import 'package:thai_lotoo/page/lottery_detail_page.dart';
 import 'package:thai_lotoo/utils/configs.dart';
 
 import '../application.dart';
@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
     }
 
     final List<Widget> _children = [
-      LotteryLastPage(),
+      LotteryDetailPage(),
       LotteryListPage(),
     ];
     ScreenUtil.init(context, width: 750, height: 1334);
