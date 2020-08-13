@@ -1,11 +1,9 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:thai_lotoo/page/lottery_detail_page.dart';
-import 'package:thai_lotoo/route/routes.dart';
 import 'package:thai_lotoo/route/transparent_route.dart';
 
 import '../application.dart';
-import 'fluro_convert_utils.dart';
 
 class NavigatorUtil {
   static _navigateTo(BuildContext context, String path,
